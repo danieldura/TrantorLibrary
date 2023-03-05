@@ -2,25 +2,31 @@
 //  ContentView.swift
 //  TrantorLibrary
 //
-//  Created by Angel Fernandez Barrios on 15/2/23.
+//  Created by Angel Fernandez Barrios on 21/2/23.
 //
 
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var vm: GeneralViewModel
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        switch vm.screen {
+        case .animation:
+            AnimationView()
+        case .login:
+            LoginView()
+        case .userHome:
+            UserView()
+        case .adminHome:
+            AdminView()
         }
-        .padding()
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(GeneralViewModel())
     }
 }
