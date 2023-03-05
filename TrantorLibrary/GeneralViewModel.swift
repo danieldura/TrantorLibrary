@@ -79,11 +79,11 @@ final class GeneralViewModel: ObservableObject {
             return true
         } catch let error as APIErrors {
             errorMsg = error.description
-            showAlert.toggle()
+            showAlertLogin.toggle()
             return false
         } catch {
             errorMsg = error.localizedDescription
-            showAlert.toggle()
+            showAlertLogin.toggle()
             return false
         }
     }
