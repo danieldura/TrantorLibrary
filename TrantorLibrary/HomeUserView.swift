@@ -37,11 +37,12 @@ struct HomeUserView: View {
                                         CoverView(url: book.cover)
                                             .frame(width: 120, height: 180)
                                     }
+                                    .navigationDestination(for: Book.self) { book in
+                                        DetailView(book: book)
+                                    }
                                 }
                             }
-                            .navigationDestination(for: Book.self) { book in
-                                DetailView(book: book)
-                            }
+                            
                         }
                         .padding(.horizontal)
                     }
@@ -55,11 +56,12 @@ struct HomeUserView: View {
                         NavigationLink(value: category) {
                             Text(category.rawValue)
                         }
+                        .navigationDestination(for: Categories.self) { category in
+                            SortCatalogueView(category: category)
+                        }
                     }
                     .listStyle(.plain)
-                    .navigationDestination(for: Categories.self) { category in
-                        SortCatalogueView(category: category)
-                    }
+                    
                 }
                 Spacer()
             }

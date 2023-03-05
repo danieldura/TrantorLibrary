@@ -15,7 +15,7 @@ final class GeneralViewModel: ObservableObject {
     @Published var errorMsg = ""
     @Published var loading = false
     
-    @Published var screen: Screens = .login
+    @Published var screen: Screens = .userHome
     @Published var homeScreen: HomeScreens = .home
     
     @Published var sortPrice: SortPrice = .descending
@@ -23,7 +23,7 @@ final class GeneralViewModel: ObservableObject {
     @Published var options: Options = .readed
         
     @Published var email = ""
-    @Published var userData: UserData = UserData(name: "", email: "", location: "", role: "")
+    @Published var userData: UserData = UserData(name: "Dani Durà", email: "hola@ddura.es", location: "", role: "")
     
     @Published var books: [Book] = []
     @Published var latest: [Book] = []
@@ -172,7 +172,7 @@ final class GeneralViewModel: ObservableObject {
     }
     
     @MainActor func toggleReaded(readed: ReadedBooks) async -> Bool {
-        loading = false
+//        loading = false
         do {
             try await persistence.postRead(readed: readed)
         } catch let error as APIErrors {
@@ -184,7 +184,7 @@ final class GeneralViewModel: ObservableObject {
             showAlert.toggle()
             return false
         }
-        loading = true
+//        loading = true
         return true
     }
 
