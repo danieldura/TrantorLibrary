@@ -15,7 +15,6 @@ struct DetailView: View {
     @State var plot   = false
     
     var body: some View {
-        let _ = DetailView._printChanges()
         VStack {
             
             ScrollView(showsIndicators: false) {
@@ -49,7 +48,8 @@ struct DetailView: View {
                                     }
                                 }
                             } label: {
-                                Label(vm.isReaded(id: book.id) ? "Read" : "Unread", systemImage: vm.isReaded(id: book.id) ? "bookmark.fill" : "bookmark.slash.fill")
+                                
+                                Label(!vm.isReaded(id: book.id) ? "Read" : "Unread", systemImage: !vm.isReaded(id: book.id) ? "bookmark.fill" : "bookmark.slash.fill")
                             }
                             .buttonStyle(.borderedProminent)
                             // .tint(vm.isReaded(id: book.id) ? .green : .red)

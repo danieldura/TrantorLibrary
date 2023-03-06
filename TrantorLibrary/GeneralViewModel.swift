@@ -171,10 +171,11 @@ final class GeneralViewModel: ObservableObject {
         loading = true
     }
     
-    @MainActor func toggleReaded(readed: ReadedBooks) async -> Bool {
-//        loading = false
+    @MainActor
+    func toggleReaded(readed: ReadedBooks) async -> Bool {
+        loading = false
         do {
-            try await persistence.postRead(readed: readed)
+            _ = try await persistence.postRead(readed: readed)
         } catch let error as APIErrors {
             errorMsg = error.description
             showAlert.toggle()
@@ -184,10 +185,9 @@ final class GeneralViewModel: ObservableObject {
             showAlert.toggle()
             return false
         }
-//        loading = true
+        loading = true
         return true
     }
-
     
     
 // func books

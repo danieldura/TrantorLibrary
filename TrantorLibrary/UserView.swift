@@ -38,7 +38,7 @@ struct UserView: View {
                 .tag(3)
         }
         .task {
-            await (vm.getBooks(), vm.getLatest(), vm.getAuthors(), vm.userOrders(),
+            _ = await (vm.userOrders(),
                 vm.getReaded(email: vm.userData.email))
         }
     }
