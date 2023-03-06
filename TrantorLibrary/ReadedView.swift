@@ -23,16 +23,21 @@ struct ReadedView: View {
         } else {
             List(vm.booksId(ids: vm.readed)) { book in
                 HStack {
-                    CoverView(url: book.cover)
-                        .frame(width: 100, height: 150)
-                    VStack(alignment:.center) {
-                        Text(book.title)
-                            .bold()
-                        Text(vm.authors[book.author] ?? "")
+                    NavigationLink(value: book) {
+                        CoverView(url: book.cover)
+                            .frame(width: 100, height: 150)
+                        VStack(alignment:.center) {
+                            Text(book.title)
+                                .bold()
+                            Text(vm.authors[book.author] ?? "")
+                        }
                     }
                 }
             }
             .navigationTitle(option.rawValue)
+            .navigationDestination(for: Book.self) { book in
+                DetailView(book: book)
+            }
             .refreshable {
                 await vm.getReaded(email: vm.userData.email)
             }
