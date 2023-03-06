@@ -9,7 +9,6 @@ import SwiftUI
 
 struct CatalogueView: View {
     @EnvironmentObject var vm: GeneralViewModel
-    
     @State var books: [Book] = []
     
     var body: some View {
@@ -34,9 +33,10 @@ struct CatalogueView: View {
                             .tint(vm.isReaded(id: book.id) ? .red : .green)
                         }
                 }
-                .navigationDestination(for: Book.self) { book in
-                    DetailView(book: book)
-                }
+
+            }
+            .navigationDestination(for: Book.self) { book in
+                DetailView(book: book)
             }
             .listStyle(.plain)
             .navigationTitle("Catalogue")
@@ -60,7 +60,8 @@ struct CatalogueView: View {
             }
             .refreshable {
                 Task {
-                    try await vm.persistence.getBooks()
+                    _ = try await vm.persistence.getBooks()
+                    await vm.getLatest()
                 }
             }
         }

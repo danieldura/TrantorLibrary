@@ -16,7 +16,7 @@ struct DetailView: View {
     
     var body: some View {
         VStack {
-            let _ = DetailView._printChanges()
+            
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading) {
                     Text(vm.authors[book.author] ?? "Not Available")
@@ -44,10 +44,12 @@ struct DetailView: View {
                                 Task {
                                     if await vm.toggleReaded(readed: ReadedBooks(books: [book.id], email: vm.userData.email)) {
                                         await vm.getReaded(email: vm.userData.email)
+                                        
                                     }
                                 }
                             } label: {
-                                Label(vm.isReaded(id: book.id) ? "Read" : "Unread", systemImage: vm.isReaded(id: book.id) ? "bookmark.fill" : "bookmark.slash.fill")
+                                
+                                Label(!vm.isReaded(id: book.id) ? "Read" : "Unread", systemImage: !vm.isReaded(id: book.id) ? "bookmark.fill" : "bookmark.slash.fill")
                             }
                             .buttonStyle(.borderedProminent)
                             // .tint(vm.isReaded(id: book.id) ? .green : .red)

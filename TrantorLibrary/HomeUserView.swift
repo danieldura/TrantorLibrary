@@ -24,7 +24,6 @@ struct HomeUserView: View {
                     Spacer()
                 }
                 .padding(.leading)
-                
                 VStack {
                     if !vm.loading {
                         ProgressView()
@@ -39,12 +38,12 @@ struct HomeUserView: View {
                                     }
                                 }
                             }
-                            .navigationDestination(for: Book.self) { book in
-                                DetailView(book: book)
-                            }
                         }
                         .padding(.horizontal)
                     }
+                }
+                .navigationDestination(for: Book.self) { book in
+                    DetailView(book: book)
                 }
                 .padding(.bottom, 60)
                 
@@ -57,9 +56,9 @@ struct HomeUserView: View {
                         }
                     }
                     .listStyle(.plain)
-                    .navigationDestination(for: Categories.self) { category in
-                        SortCatalogueView(category: category)
-                    }
+                }
+                .navigationDestination(for: Categories.self) { category in
+                    SortCatalogueView(category: category)
                 }
                 Spacer()
             }

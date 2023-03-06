@@ -15,7 +15,7 @@ final class GeneralViewModel: ObservableObject {
     @Published var errorMsg = ""
     @Published var loading = false
     
-    @Published var screen: Screens = .login
+    @Published var screen: Screens = .animation
     @Published var homeScreen: HomeScreens = .home
     
     @Published var sortPrice: SortPrice = .descending
@@ -79,11 +79,11 @@ final class GeneralViewModel: ObservableObject {
             return true
         } catch let error as APIErrors {
             errorMsg = error.description
-            showAlert.toggle()
+            showAlertLogin.toggle()
             return false
         } catch {
             errorMsg = error.localizedDescription
-            showAlert.toggle()
+            showAlertLogin.toggle()
             return false
         }
     }
@@ -171,10 +171,11 @@ final class GeneralViewModel: ObservableObject {
         loading = true
     }
     
-    @MainActor func toggleReaded(readed: ReadedBooks) async -> Bool {
+    @MainActor
+    func toggleReaded(readed: ReadedBooks) async -> Bool {
         loading = false
         do {
-            try await persistence.postRead(readed: readed)
+            _ = try await persistence.postRead(readed: readed)
         } catch let error as APIErrors {
             errorMsg = error.description
             showAlert.toggle()
@@ -187,7 +188,6 @@ final class GeneralViewModel: ObservableObject {
         loading = true
         return true
     }
-
     
     
 // func books

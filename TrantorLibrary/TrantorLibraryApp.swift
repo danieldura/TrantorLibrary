@@ -15,6 +15,9 @@ struct TrantorLibraryApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(vm)
+                .task {
+                    _ = await (vm.getBooks(), vm.getLatest(), vm.getAuthors())
+                }
         }
     }
 }
