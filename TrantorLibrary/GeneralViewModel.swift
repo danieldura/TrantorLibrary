@@ -15,7 +15,7 @@ final class GeneralViewModel: ObservableObject {
     @Published var errorMsg = ""
     @Published var loading = false
     
-    @Published var screen: Screens = .animation
+    @Published var screen: Screens = .userHome
     @Published var homeScreen: HomeScreens = .home
     
     @Published var sortPrice: SortPrice = .descending
@@ -23,7 +23,7 @@ final class GeneralViewModel: ObservableObject {
     @Published var options: Options = .readed
         
     @Published var email = ""
-    @Published var userData: UserData = UserData(name: "", email: "", location: "", role: "")
+    @Published var userData: UserData = UserData(name: "DDura", email: "hola@ddura.es", location: "", role: "")
     
     @Published var books: [Book] = []
     @Published var latest: [Book] = []

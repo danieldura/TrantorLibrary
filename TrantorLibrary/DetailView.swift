@@ -50,6 +50,8 @@ struct DetailView: View {
                             } label: {
                                 
                                 Label(!vm.isReaded(id: book.id) ? "Read" : "Unread", systemImage: !vm.isReaded(id: book.id) ? "bookmark.fill" : "bookmark.slash.fill")
+                                    .animation(.easeIn, value: vm.isReaded(id: book.id))
+                                    .frame(minWidth: 90)
                             }
                             .buttonStyle(.borderedProminent)
                             // .tint(vm.isReaded(id: book.id) ? .green : .red)
